@@ -1,0 +1,120 @@
+
+--- Code Deployment Steps ---
+
+## Get status of Git
+git status
+
+The branch should be stable..if not change it to stable..
+
+## Add the new code
+
+git add .
+
+## Stash your git branch if you want to change the branch to stable
+
+git stash
+
+## Get stable branch with updated Code
+
+git fetch
+
+## Create your new branch. Get Jira ticket number and add hypens with small description and all lowercase.
+
+git checkout -b pt-34-signal-field-stats
+
+## Change the branch to Stable if not at stable.
+
+git reset --hard origin/stable
+
+## Add your branch to stable
+
+git stash pop
+
+## Run bootstrap for application to update from Stable branch
+
+npm run bootstrap
+
+## Check the status again
+
+git status
+
+## Commit your code. The Jira ticket and small code description.
+
+git commit -m "PT-34 Script to log number of fields in the signals across all orgs"
+
+## Push your changes to Git
+
+git push -u origin pt-34-signal-field-stats
+
+## Check the Pull request
+
+Check the branch where we need to merge.
+
+
+################################################################################
+
+## any time if you want to make any changes to code based on pull request comments ###
+
+## Check the branch..it should point to your pull request branch
+
+git status
+
+## make changes to your code
+
+## Add your file
+
+git add .
+
+## run npm bootstrap from root directory
+
+npm run bootstrap
+
+
+## check the status of branch
+
+git status
+
+## Commit your code. The Jira ticket and small code description.
+
+git commit -m "PT-34 Script for logging number of fields in the signals across all orgs. The code changed to remove concurrent execution and added linear execution"
+
+## Push your changes to the same branch
+
+git push -u origin pt-34-signal-field-stats
+
+## In the PR for running the test
+
+go to services/juno and run npm run test
+
+-----------------------------------------------
+
+Steps for Building into dev environment
+
+- git tag-jupiter
+
+- Run: npm run tag
+
+- Select envoronment: dev
+
+- Select services: Juno
+
+- Run the build command 
+
+    Command: build current commit id 
+
+Go to cloud build and see the build running or not. 
+
+4. Deployement Steps 
+
+    - git tag-jupiter
+
+    - Run: npm run tag
+
+    - Select envoronment : dev
+
+    - Select Service: Juno 
+
+    - Deploy the current commit 
+        Command: deploy current commit id
+
+==============================================
